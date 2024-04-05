@@ -2,6 +2,7 @@
 
 import dbConnect from "@/dbConnect/dbConnect"
 import User from "@/models/User";
+import { revalidatePath } from "next/cache";
 
 // import { z } from "zod"
 
@@ -22,10 +23,25 @@ export const registerUser = async (formData: FormData) => {
             email: formData.get("email"),
         }
         const saveuser = await new User(data).save();
-        console.log(saveuser)
+        revalidatePath("/new3")
+        // console.log(saveuser)
     } catch (error) {
-        console.log(error)
+        return {
+            error: "There was an error saving"
+        }
     }
+}
 
-
+// Get users
+export const getUser = async ()=>{
+    try {
+        await dbConnect();
+        const response = await User.find().exec();
+        console.log(response)
+        return response;
+    } catch (error) {
+        return {
+            error: "There was an error saving"
+        }
+    }
 }
