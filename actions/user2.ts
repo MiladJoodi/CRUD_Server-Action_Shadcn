@@ -1,5 +1,4 @@
 "use server"
-// import { FormData } from "@/app/_components/user2/RegisterForm"
 import { z } from "zod"
 
 //   Zod
@@ -12,17 +11,17 @@ const schema = z.object({
 // Register
 export const registerUser = async (formData: FormData) => {
 
-    // const {name, email} = Object.fromEntries(formData);
-
     // const name = formData.get("name");
+    
     // const { name, email } = formData;
 
-    // const parse = schema.safeParse({
-    //     name: formData.get("name"),
-    //     email: formData.get("email"),
-    // })
-    // if(!parse.success){
-    //     console.log(parse.error)
-    // }
+    const parse = schema.safeParse({
+        name: formData.get("name"),
+        email: formData.get("email"),
+    })
+    if(!parse.success){
+        console.log(parse.error)
+    }
+    console.log("ok")
 
 }

@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
+import React, { FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { registerUser } from "@/actions/user2";
 
-export type FormData = {
+type FormData = {
   name: string,
   email: string
 }
@@ -22,8 +22,9 @@ const RegisterForm = () => {
 
   // const sleep = (ms:number) => new Promise(response => setTimeout(response, ms));
 
-  const onSubmit = async (e:any)=> {
-    await registerUser(e)
+  const onSubmit = async (event:FormEvent<HTMLFormElement>)=> {
+    event.preventDefault()
+    await registerUser(event.currentTarget)
     // event.preventDefault();
     // await sleep(5000)
     // await registerUser(event);
