@@ -5,12 +5,12 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { registerUser } from "@/actions/user2";
 
-export interface UserInput {
-  name: string;
-  email: string;
+export type FormData = {
+  name: string,
+  email: string
 }
 
- const RegisterForm:React.FC = ()=> {
+const RegisterForm = () => {
   // React Hook Form Start
   const {
     register,
@@ -18,19 +18,22 @@ export interface UserInput {
     watch,
     formState: { errors },
     reset,
-  } = useForm<UserInput>();
+  } = useForm<FormData>();
 
-  const onSubmit = async (data: FormData) => {
-    await registerUser(data) 
-    console.log(data);
+  // const sleep = (ms:number) => new Promise(response => setTimeout(response, ms));
+
+  const onSubmit = async (e:any)=> {
+    await registerUser(e)
+    // event.preventDefault();
+    // await sleep(5000)
+    // await registerUser(event);
   };
 
-  // React Hook Form End
 
   return (
     <form
-      // onSubmit={handleSubmit(onSubmit)}
-      className=" flex flex-col gap-3   w-full shadow-lg p-6  rounded-md"
+    onSubmit={handleSubmit(onSubmit)}
+      className=" flex flex-col gap-3  w-full shadow-lg p-6  rounded-md"
     >
       <div className="flex flex-col gap-1">
         <Input
@@ -40,7 +43,8 @@ export interface UserInput {
             maxLength: 20,
           })}
           type="text"
-          placeholder="Your ame"
+          placeholder="Your name"
+          name="name"
         />
         {errors.name && errors.name.type === "required" && (
           <p className="text-red-500">{errors.name?.message}</p>
@@ -48,15 +52,16 @@ export interface UserInput {
       </div>
 
       <div className="flex flex-col gap-1">
-      <Input
-        {...register("email", {
-          required: "Please enter your email",
-          minLength: 5,
-          maxLength: 20,
-        })}
-        type="email"
-        placeholder="Your email"
-      />
+        <Input
+          {...register("email", {
+            required: "Please enter your email",
+            minLength: 5,
+            maxLength: 20,
+          })}
+          type="email"
+          placeholder="Your email"
+          name="email"
+        />
         {errors.email && errors.email.type === "required" && (
           <p className="text-red-500">{errors.email?.message}</p>
         )}
@@ -65,6 +70,6 @@ export interface UserInput {
       <Button>Submit</Button>
     </form>
   );
-}
+};
 
 export default RegisterForm;
