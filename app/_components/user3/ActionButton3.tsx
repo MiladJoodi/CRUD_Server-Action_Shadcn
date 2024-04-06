@@ -13,7 +13,7 @@ function ActionButton3({title}:TitleProps) {
 
   return (
     <Button type='submit'>
-                  {pending ? "Submitting" : "Submit"}
+                  {pending ? title+"..." : title}
     </Button>
   )
 }
