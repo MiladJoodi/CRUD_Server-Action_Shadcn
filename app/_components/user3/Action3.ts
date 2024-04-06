@@ -37,11 +37,27 @@ export const getUser = async ()=>{
     try {
         await dbConnect();
         const response = await User.find().exec();
-        console.log(response)
+        // console.log(response)
         return response;
     } catch (error) {
         return {
             error: "There was an error saving"
+        }
+    }
+}
+
+// Delete
+export const deleteUser = async (formData: FormData)=>{
+    try {
+        await dbConnect();
+        const data = {
+            id: formData.get("id")
+        }
+        const result = await User.findByIdAndDelete(data?.id);
+        revalidatePath("/")
+    } catch (error) {
+        return{
+            error: "There wa an error deleting"
         }
     }
 }

@@ -20,8 +20,8 @@ export const registerUser = async (formData: FormData) => {
         email: formData.get("email"),
     })
     if(!parse.success){
-        console.log(parse.error)
+        // console.log(parse.error)
     }
-    console.log("ok")
+    // console.log("ok")
 
 }

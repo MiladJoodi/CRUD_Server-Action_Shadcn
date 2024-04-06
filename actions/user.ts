@@ -17,7 +17,7 @@ export const createNewUser = async (formData: FormData) => {
         email: formData.get("email"),
     })
     if(!parse.success){
-        console.log(parse.error)
+        // console.log(parse.error)
         return {message: 'form data is not valid'}
     }
 
@@ -36,10 +36,10 @@ export const createNewUser = async (formData: FormData) => {
         // }
         const saveUser = await new User(data).save()
         revalidatePath("/")
-        console.log(saveUser)
+        // console.log(saveUser)
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 }
 
@@ -50,6 +50,6 @@ export const showerUsers = async () => {
         const response = await User.find().exec();
         return response
     } catch (error) {
-        console.log(error)
+        // console.log(error)
     }
 }
