@@ -26,7 +26,7 @@ function DeleteButton({id} : {id: string}) {
     }
 
   return (
-    <form onSubmit={(e)=>handleDeleteUser(e)} className=''>
+    <form onSubmit={(e)=>handleDeleteUser(e)} className='w-full col-span-3'>
         <input type="hidden" name='id' value={id} />
         <ActionButton3 title="Delete" />
     </form>

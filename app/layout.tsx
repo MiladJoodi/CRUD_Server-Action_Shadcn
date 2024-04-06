@@ -26,7 +26,7 @@ export default function RootLayout({
         <main className="bg-white max-w-5xl px-5 mx-auto min-h-[100dvh] py-10 gap-10 flex flex-col">
           <ul className="w-full bg-slate-950 text-white flex flex-row gap-5 uppercase">
             <li>
-              <Link href={"/"} className="py-2 px-5 flex hover:text-slate-300">
+              <Link href={"/new3"} className="py-2 px-5 flex hover:text-slate-300">
               Home</Link>
             </li>
             <li>
