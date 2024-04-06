@@ -12,7 +12,7 @@ function ActionButton3({title}:TitleProps) {
   const {pending} = useFormStatus();
 
   return (
-    <Button type='submit'>
+    <Button type='submit' className='w-full'>
                   {pending ? title+"..." : title}
     </Button>
   )

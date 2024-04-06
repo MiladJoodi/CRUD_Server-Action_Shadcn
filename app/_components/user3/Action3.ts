@@ -46,7 +46,7 @@ export const getUser = async ()=>{
     }
 }
 
-// Delete
+// Delete server side
 export const deleteUser = async (formData: FormData)=>{
     try {
         await dbConnect();
@@ -54,6 +54,19 @@ export const deleteUser = async (formData: FormData)=>{
             id: formData.get("id")
         }
         const result = await User.findByIdAndDelete(data?.id);
+        revalidatePath("/")
+    } catch (error) {
+        return{
+            error: "There wa an error deleting"
+        }
+    }
+}
+
+// Delete CLient side with Confirm
+export const deleteUserWithConfirm = async (id: string)=>{
+    try {
+        await dbConnect();
+        const result = await User.findByIdAndDelete(id);
         revalidatePath("/")
     } catch (error) {
         return{
