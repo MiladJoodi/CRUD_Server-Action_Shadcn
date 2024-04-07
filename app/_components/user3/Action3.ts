@@ -119,8 +119,6 @@ export const updateUser = async (formData: FormData) => {
         }
         }
 
-
-
     } catch (error) {
         return {
             error: "There was an error saving"
