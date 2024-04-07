@@ -13,7 +13,7 @@ function New({searchParams} : {searchParams: {search: string | undefined}}) {
     <div className="w-full h-[100dvh] flex flex-col gap-4 justify-start items-center max-w-[500px] p-3 py-6 mx-auto">
       <h2 className="text-3xl font-bold">Register</h2>
       <RegisterForm />
-      <UserSearch />
+      <UserSearch search={search} />
       <UserList3 search={search} />
     </div>
   );

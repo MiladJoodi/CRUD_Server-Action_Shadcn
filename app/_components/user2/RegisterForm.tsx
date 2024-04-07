@@ -22,7 +22,7 @@ const RegisterForm = () => {
 
   // const sleep = (ms:number) => new Promise(response => setTimeout(response, ms));
 
-  const onSubmit = async (event:FormEvent<HTMLFormElement>)=> {
+  const onSubmit = async (event:any)=> {
     event.preventDefault()
     await registerUser(event.currentTarget)
     // event.preventDefault();
