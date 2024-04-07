@@ -33,16 +33,18 @@ export const registerUser = async (formData: FormData) => {
 }
 
 // Get users
-export const getUser = async ({search} : string) => {
+export const getUser = async ({search} : any) => {
     try {
         await dbConnect();
         
         let response;
         if(search){
+            const regex = new RegExp(search, 'i')
+            
             response = await User.find({
                 $or: [
-                    {name:  search},
-                    {email:  search},
+                    {name:  {$regex: regex}},
+                    {email:  {$regex: regex}}
                 ]
             })
         }else{
