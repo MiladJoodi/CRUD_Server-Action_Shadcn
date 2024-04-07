@@ -3,10 +3,10 @@ import SingleUser3 from './SingleUser3'
 import { getUser } from '@/app/_components/user3/Action3'
 
 
-async function UserList3() {
+async function UserList3({search}:{search:string | undefined}) {
   
 
-    const users = await getUser();
+    const users = await getUser({search});
     // console.log(users)
 
 

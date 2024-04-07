@@ -33,11 +33,23 @@ export const registerUser = async (formData: FormData) => {
 }
 
 // Get users
-export const getUser = async () => {
+export const getUser = async ({search} : string) => {
     try {
         await dbConnect();
-        const response = await User.find().exec();
-        // console.log(response)
+        
+        let response;
+        if(search){
+            response = await User.find({
+                $or: [
+                    {name:  search},
+                    {email:  search},
+                ]
+            })
+        }else{
+            response = await User.find().exec();
+        }
+        console.log(response)
+
         return response;
     } catch (error) {
         return {
